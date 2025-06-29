@@ -33,6 +33,12 @@ export default function Main() {
       prev === 0 ? productImages.length - 1 : prev - 1
     );
   };
+  const [quantity, setQuantity] = useState<number>(0)
+  const decrease = () =>{ 
+    if(quantity === 0){
+    return quantity
+  } setQuantity(quantity - 1)}
+    const increase = () => setQuantity(quantity + 1)
 
   return (
     <section className="flex flex-col items-center justify-center w-screen mt-7" >
@@ -47,8 +53,8 @@ export default function Main() {
           alt={`Product ${currentIndex + 1}`}
           className="w-full h-[300px]"
         />
-       <div onClick={nextImage} className="flex items-center justify-center rounded-full h-10 w-10 bg-[#FFFFFF]
-         absolute top-[55%] left-[87%]">
+       <div onClick={nextImage} className=" absolute flex items-center justify-center rounded-full h-10 w-10 bg-[#FFFFFF]
+          top-[55%] left-[87%]">
          <img   className="w-2 h-3" src="/images/icon-next.svg" />
         </div> 
       </div>
@@ -98,9 +104,40 @@ export default function Main() {
         <span className="text-[#B6BCC8] line-through">$250.00</span>
 
        </div>
+  {/*quantity button */}
+        <div className="flex items-center justify-center gap-30 h-[56px] w-full">
+      <button
+        type="button"
+        onClick={decrease}
+        style={{
+          width: "32px",
+          height: "32px",
+          fontSize: "20px",
+          cursor: "pointer",
+        }}
+      >
+        –
+      </button>
 
-       <button></button>
-       <button></button>
+      <span style={{ minWidth: "24px", textAlign: "center" }}>{quantity}</span>
+
+      <button
+        type="button"
+        onClick={increase}
+        style={{
+          width: "32px",
+          height: "32px",
+          fontSize: "20px",
+          cursor: "pointer",
+        }}
+      >
+        +
+      </button>
+    </div>
+  {/* // End */}
+       <button className="flex text-white h-[56px] mt-4 mb-22
+        items-center justify-center rounded-[10px] gap-4
+         bg-[#FF7E1B]"><img src="/images/icon-cart.svg" alt="" /><span>Add to cart</span></button>
       </div>
 
     </section>
