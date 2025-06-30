@@ -7,7 +7,7 @@ function App() {
 
 
   return (
-  <div>
+  <div className='flex flex-col items-center justify-center lg:gap-[90px] lg:pt-11'>
   <MenuProvider>
     <Menu />
     <Header />

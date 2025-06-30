@@ -42,43 +42,41 @@ export default function Main() {
      setQuantity(quantity + 1)
 }
   return (
-    <section className={`flex flex-col items-center justify-center w-screen mt-7`} >
-      <div className={`${menu ? 'block' : 'relative'} w-full`}>
+    <section className={`flex flex-col lg:flex-row items-center justify-center w-screen  lg:gap-40 mt-7`} >
+      <div className="flex flex-col items-center justify-center  lg:gap-8 w-full">
+
+      <div className={`${menu ? 'block' : 'relative'} flex flex-col items-center justify-center lg:w-[445px] lg:h-[445px]  w-full h-[360px]`}>
         <div onClick={prevImage} 
-        className={`flex items-center justify-center
-         rounded-full h-10 w-10 bg-[#FFFFFF]  ${!menu ? "absolute" : "block"} top-[55%] left-[16px]
+        className={`lg:hidden flex items-center justify-center
+         rounded-full h-10 w-10 bg-[#FFFFFF]  ${!menu ? "absolute" : "block"} top-[50%] left-[5px]
         `}>
             <img className=" w-2 h-3" src="/images/icon-previous.svg"/></div>
         <img
           src={productImages[currentIndex].full}
           alt={`Product ${currentIndex + 1}`}
-          className="w-full h-[300px] block "
+          className="w-full h-[300px] block lg:w-[445px] lg:h-[445px] lg:rounded-[16px]"
         />
-       <div onClick={nextImage} className=" absolute flex items-center justify-center rounded-full h-10 w-10 bg-[#FFFFFF]
-          top-[55%] left-[87%]">
+       <div onClick={nextImage} className="lg:hidden absolute flex items-center justify-center rounded-full h-10 w-10 bg-[#FFFFFF]
+          top-[50%] left-[87%]">
          <img   className="w-2 h-3" src="/images/icon-next.svg" />
         </div> 
       </div>
-{/* 
-   
-      <div style={{ marginTop: "20px" }}>
+
+   {/* gallery */}
+      <div className="hidden lg:flex gap-10 cursor-pointer" >
         {productImages.map((item, index) => (
           <img
             key={index}
             src={item.thumb}
             alt={`Thumbnail ${index + 1}`}
-            style={{
-              width: "60px",
-              height: "60px",
-              margin: "0 5px",
-              border: index === currentIndex ? "2px solid blue" : "1px solid gray",
-              cursor: "pointer",
-            }}
+            className="rounded-[10px] w-20 h-20"
             onClick={() => setCurrentIndex(index)}
           />
         ))}
-      </div> */}
-      <div className="flex flex-col w-[327px] gap-6 mt-[24px]">
+      </div>
+
+     </div>
+     <div className="flex flex-col items-center justify-center lg:mr-[165px] w-[327px] lg:w-[445px] gap-6 mt-[24px] lg:gap-8">
          <a href="https://stockx.com/category/sneakers" className="text-[#FF7E1B] w-full">Sneaker Company</a>
          <h2 
          className="font-[700] text-[28px] 
@@ -105,8 +103,10 @@ export default function Main() {
         <span className="text-[#B6BCC8] line-through">$250.00</span>
 
        </div>
+
+       <div className="flex lg:h-[56px] flex-col lg:flex-row lg:gap-4 items-center justify-center gap-4 lg:mr-[165px]">
   {/*quantity button */}
-        <div className="flex items-center justify-center gap-30 h-[56px] w-full">
+        <div className="bg-[#F6F8FD] rounded-[10px] flex items-center justify-center gap-30 h-[56px] lg:gap-11 lg:w-[150px] lg:ml-[165px] w-full">
       <button
         type="button"
         onClick={decrease}
@@ -136,12 +136,14 @@ export default function Main() {
       </button>
     </div>
   {/* // End */}
-       <button className="flex text-white h-[56px] mt-4 mb-22
+       <button className="flex text-white h-[56px] w-full lg:w-[272px] lg:mb-0  mb-22
         items-center justify-center rounded-[10px] gap-4
          bg-[#FF7E1B]"
          onClick={() =>  setCart(quantity)}><img src="/images/icon-cart.svg" alt="" /><span>Add to cart</span></button>
       </div>
 
+    </div>
+ 
     </section>
   );
 }
