@@ -6,13 +6,14 @@ const Menu = () => {
   const { menu, setMenu } = useMenu();
 
   return (
-    <>
+    <div className={`${menu ? 'absolute' : ' hidden' } ${menu ? 'h-full' : 'min-h-[2000px]' } left-0 absolute top-0 min-h-screen w-1/2 bg-white flex flex-col pl-6.5 gap-5 pt-6 `}>
       {menu && (
-        <div className="left-0 absolute top-0 h-screen w-1/2 bg-white flex flex-col gap-6 p-10">
+        <div className="left-0 absolute top-0 min-h-screen w-1/2 bg-white flex flex-col pl-6.5 gap-5 pt-6">
+          <img src="/images/icon-close.svg" onClick={() => setMenu(!menu)} className="w-4 h-4" alt="cancel icon" />
           {menuData.map((item) => (
             <span
               onClick={() => setMenu(false)}
-              className="text-black text-2xl cursor-pointer mt-8 "
+              className="text-black text-[18px] font-bold cursor-pointer mt-8 "
               key={item}
             >
               {item}
@@ -20,7 +21,7 @@ const Menu = () => {
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

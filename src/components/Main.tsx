@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useMenu } from "../context/Context";
 const productImages = [
   {
     full: "/images/image-product-1.jpg",
@@ -21,7 +21,7 @@ const productImages = [
 
 export default function Main() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const {menu , setCart,} = useMenu();
   const nextImage = () => {
     setCurrentIndex((prev) =>
       prev === productImages.length - 1 ? 0 : prev + 1
@@ -38,20 +38,21 @@ export default function Main() {
     if(quantity === 0){
     return quantity
   } setQuantity(quantity - 1)}
-    const increase = () => setQuantity(quantity + 1)
-
+    const increase = () =>{
+     setQuantity(quantity + 1)
+}
   return (
-    <section className="flex flex-col items-center justify-center w-screen mt-7" >
-      <div className="relative w-full">
+    <section className={`flex flex-col items-center justify-center w-screen mt-7`} >
+      <div className={`${menu ? 'block' : 'relative'} w-full`}>
         <div onClick={prevImage} 
-        className="flex items-center justify-center
-         rounded-full h-10 w-10 bg-[#FFFFFF]
-         absolute top-[55%] left-[16px]">
-            <img className="w-2 h-3" src="/images/icon-previous.svg"/></div>
+        className={`flex items-center justify-center
+         rounded-full h-10 w-10 bg-[#FFFFFF]  ${!menu ? "absolute" : "block"} top-[55%] left-[16px]
+        `}>
+            <img className=" w-2 h-3" src="/images/icon-previous.svg"/></div>
         <img
           src={productImages[currentIndex].full}
           alt={`Product ${currentIndex + 1}`}
-          className="w-full h-[300px]"
+          className="w-full h-[300px] block "
         />
        <div onClick={nextImage} className=" absolute flex items-center justify-center rounded-full h-10 w-10 bg-[#FFFFFF]
           top-[55%] left-[87%]">
@@ -137,7 +138,8 @@ export default function Main() {
   {/* // End */}
        <button className="flex text-white h-[56px] mt-4 mb-22
         items-center justify-center rounded-[10px] gap-4
-         bg-[#FF7E1B]"><img src="/images/icon-cart.svg" alt="" /><span>Add to cart</span></button>
+         bg-[#FF7E1B]"
+         onClick={() =>  setCart(quantity)}><img src="/images/icon-cart.svg" alt="" /><span>Add to cart</span></button>
       </div>
 
     </section>
