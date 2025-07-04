@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMenu } from "../context/Context";
+import { useCard } from "../context/CardContext";
 const productImages = [
   {
     full: "/images/image-product-1.jpg",
@@ -27,7 +28,7 @@ export default function Main() {
       prev === productImages.length - 1 ? 0 : prev + 1
     );
   };
-
+const{cardState} = useCard()
   const prevImage = () => {
     setCurrentIndex((prev) =>
       prev === 0 ? productImages.length - 1 : prev - 1
@@ -42,16 +43,16 @@ export default function Main() {
      setQuantity(quantity + 1)
 }
   return (
+    
     <section className={`flex flex-col lg:flex-row items-center justify-center w-screen  lg:gap-40 mt-7`} >
       <div className="flex flex-col items-center justify-center  lg:gap-8 w-full">
-
-      <div className={`${menu ? 'block' : 'relative'} flex flex-col items-center justify-center lg:w-[445px] lg:h-[445px]  w-full h-[360px]`}>
+      <div className={`${menu ? 'block' : 'relative'}${cardState ? 'block' : 'relative'}  flex flex-col items-center justify-center lg:w-[445px] lg:h-[445px]  w-full h-[360px]`}>
         <div onClick={prevImage} 
         className={`lg:hidden flex items-center justify-center
-         rounded-full h-10 w-10 bg-[#FFFFFF]  ${!menu ? "absolute" : "block"} top-[50%] left-[5px]
+         rounded-full h-10 w-10 bg-[#FFFFFF]  ${!menu ? "absolute" : "block"}  top-[50%] left-[5px]
         `}>
             <img className=" w-2 h-3" src="/images/icon-previous.svg"/></div>
-        <img
+        <img 
           src={productImages[currentIndex].full}
           alt={`Product ${currentIndex + 1}`}
           className="w-full h-[300px] block lg:w-[445px] lg:h-[445px] lg:rounded-[16px]"
