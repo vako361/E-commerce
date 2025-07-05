@@ -10,6 +10,13 @@ export default function Header() {
     setCardState(!cart),
     setCart(0)
   }
+  const navItems = document.querySelectorAll('.nav-item')
+  navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    navItems.forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+  });
+});
   return (
 
     <div className="flex justify-between pt-[20px] w-[400px] lg:w-[1250px] pl-7 relative">
@@ -29,9 +36,8 @@ export default function Header() {
 
       <section className="hidden lg:flex gap-10">
         {menuData.map((item) => (
-          <div className="relative pr-2">
-           <span className={`hover:cursor-pointer w-full`} key={item}>{item}</span>
-           <div className="w-[58px] h-1 bg-[#FF7E1B] mt-7"></div>
+          <div className="relative pr-2" key={item}>
+           <span className={`nav-item hover:cursor-pointer w-full`} key={item}>{item}</span>
           </div>
         ))}
       </section>

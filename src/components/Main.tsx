@@ -12,8 +12,8 @@ const productImages = [
   },
   {
     full: "/images/image-product-3.jpg",
-    thumb: "/images/image-product-3-thumbnail.jpg", // ✅ You missed a slash!
-  },
+    thumb: "/images/image-product-3-thumbnail.jpg", 
+    },
   {
     full: "/images/image-product-4.jpg",
     thumb: "/images/image-product-4-thumbnail.jpg",

@@ -1,1 +1,16 @@
 @import "tailwindcss";
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: black;
+  transition: width 0.3s ease;
+}
+.nav-item.active::after {
+ width: 100%;
+ background: #FF7E1B;
+ height: 0.2rem;
+}
