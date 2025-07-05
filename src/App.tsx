@@ -4,6 +4,7 @@ import { MenuProvider } from './context/Context'
 import Main from './components/Main'
 import Header from './components/Header'
 import Provider from './context/CardContext'
+import Img from './components/Img'
 function App() {
 
 
@@ -14,8 +15,9 @@ function App() {
     <Menu />
     <Header />
     <Main />
+    <Img />
     </Provider>
-  </MenuProvider>
+</MenuProvider>
   </div>
   )
 }

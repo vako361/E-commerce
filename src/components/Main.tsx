@@ -22,7 +22,7 @@ const productImages = [
 
 export default function Main() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const {menu , setCart,} = useMenu();
+  const {menu , setCart, setImg, img} = useMenu();
   const nextImage = () => {
     setCurrentIndex((prev) =>
       prev === productImages.length - 1 ? 0 : prev + 1
@@ -44,21 +44,22 @@ const{cardState} = useCard()
 }
   return (
     
-    <section className={`flex flex-col lg:flex-row items-center justify-center w-screen  lg:gap-40 mt-7`} >
+    <section className={`flex flex-col lg:flex-row items-center justify-center w-screen lg:gap-40 mt-7`} >
       <div className="flex flex-col items-center justify-center  lg:gap-8 w-full">
       <div className={`${menu ? 'block' : 'relative'}${cardState ? 'block' : 'relative'}  flex flex-col items-center justify-center lg:w-[445px] lg:h-[445px]  w-full h-[360px]`}>
         <div onClick={prevImage} 
         className={`lg:hidden flex items-center justify-center
-         rounded-full h-10 w-10 bg-[#FFFFFF]  ${!menu ? "absolute" : "block"}  top-[50%] left-[5px]
+         rounded-full h-10 w-10 bg-[#FFFFFF]  ${!menu ? "absolute" : "block"}  top-[35%] left-[5px]
         `}>
             <img className=" w-2 h-3" src="/images/icon-previous.svg"/></div>
         <img 
           src={productImages[currentIndex].full}
           alt={`Product ${currentIndex + 1}`}
-          className="w-full h-[300px] block lg:w-[445px] lg:h-[445px] lg:rounded-[16px]"
+          onClick={() => setImg(!img)}
+          className="w-full cursor-pointer h-[300px] block lg:w-[445px] lg:h-[445px] lg:rounded-[16px]"
         />
        <div onClick={nextImage} className="lg:hidden absolute flex items-center justify-center rounded-full h-10 w-10 bg-[#FFFFFF]
-          top-[50%] left-[87%]">
+          top-[35%] left-[89%]">
          <img   className="w-2 h-3" src="/images/icon-next.svg" />
         </div> 
       </div>

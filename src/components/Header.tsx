@@ -2,10 +2,14 @@ import { useMenu } from "../context/Context";
 import { useCard } from "../context/CardContext";
 
 export default function Header() {
-  const { menu, setMenu, cart } = useMenu();
+  const { menu, setMenu, cart, setCart } = useMenu();
   const { cardState, setCardState } = useCard();
   const menuData = ["Collections", "Men", "Women", "About", "Contact"];
-
+ 
+  const cheakOut = () => {
+    setCardState(!cart),
+    setCart(0)
+  }
   return (
 
     <div className="flex justify-between pt-[20px] w-[400px] lg:w-[1250px] pl-7 relative">
@@ -13,39 +17,42 @@ export default function Header() {
         <img
           src="/images/icon-menu.svg"
           onClick={() => setMenu(!menu)}
-          className={`${menu ? 'hidden' : "block"} w-4 h-3`}
+          className={`${menu ? 'hidden' : "block"} lg:hidden w-4 h-3`}
           alt="menu icon"
         />
         <img
           src="/images/logo.svg"
-          className="w-[137.5px] h-[20px]"
+          className={` ${menu && 'hidden'} w-[137.5px] h-[20px] lg:mb-5`}
           alt="logo"
         />
       </div>
 
-      <section className="hidden lg:flex gap-8">
+      <section className="hidden lg:flex gap-10">
         {menuData.map((item) => (
-          <span key={item}>{item}</span>
+          <div className="relative pr-2">
+           <span className={`hover:cursor-pointer w-full`} key={item}>{item}</span>
+           <div className="w-[58px] h-1 bg-[#FF7E1B] mt-7"></div>
+          </div>
         ))}
       </section>
 
-      <div className="flex gap-5 relative">
+      <div className="flex gap-5 relative items-center justify-center">
         {cart > 0 && (
           <>
           <div className="absolute left-[12px] flex
            justify-center items-center 
-          bottom-3.5 rounded-[6.5px] bg-[#FF7E1B] w-[19px] h-[13px]">
+          lg:bottom-9.5 bottom-3.5 rounded-[6.5px] bg-[#FF7E1B] w-[19px] h-[13px]">
             <span className="text-[10px] text-white">{cart}</span>
           </div>
          </>
            )}
         <img
           src="/images/icon-cart.svg"
-          className="w-5 h-5"
+          className="w-5 h-5 lg:w-7 lg:h-7 lg:mb-2 "
           onClick={() => setCardState(!cardState)}
           alt="cart icon"
         />
-        <img src="/images/image-avatar.png" className="w-6 h-6" alt="" />
+        <img src="/images/image-avatar.png" className="w-6 h-6 lg:w-12 lg:h-12 hover:cursor-pointer hover:border-[2px] lg:mb-3 lg:ml-10 rounded-full border-[#FF7E1B]" alt="avatar" />
       </div>
 
       <div
@@ -66,7 +73,7 @@ export default function Header() {
                 <span className="font-bold text-black">${125 * cart}.00</span>
               </p>
             </div>
-                   <button className="absolute w-[312px]
+                   <button onClick={() => cheakOut()} className="absolute w-[312px]
            h-[56px] bg-[#FF7E1B]
             rounded-[10px]
              text-white text-[16px] bottom-[34px] left-[26px] cursor-pointer">Cheakout</button>
