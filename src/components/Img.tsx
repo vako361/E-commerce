@@ -25,7 +25,8 @@ export default function Img() {
 
     return(
         <div className={`${img ? 'absolute' : 'hidden' } flex flex-col 
-         w-screen h-screen bg-[#FFF] items-center justify-center `}>
+         bg-[#FFF] items-center justify-center `}>
+        
         <img src="/images/icon-close.svg" className="mb-[50px] ml-100 w-5 h-5" onClick={() => setImg(!img)} alt="" />
           <div className="h-[670px] flex gap-10 relative">
            
